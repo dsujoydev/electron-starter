@@ -1,5 +1,13 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 
-const root = createRoot(document.body);
-root.render(<h2>Hello from React!</h2>);
+// Wait for DOM to be ready before initializing React
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("root");
+  if (container) {
+    const root = createRoot(container);
+    root.render(<h2>Hello from React!</h2>);
+  } else {
+    console.error("Root container not found");
+  }
+});
