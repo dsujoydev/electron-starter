@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import path from "node:path";
 import started from "electron-squirrel-startup";
 import { appDatabase } from "./db/database";
@@ -35,6 +35,37 @@ const createWindow = () => {
 app.on("ready", () => {
   // Database is initialized when the module is imported
   console.log("Database ready");
+
+  // Set up IPC handlers for database operations
+  ipcMain.handle("db:createUser", async (event, username: string, email: string) => {
+    try {
+      const userId = appDatabase.createUser(username, email);
+      return { success: true, userId };
+    } catch (error) {
+      console.error("Error creating user:", error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle("db:getAllUsers", async () => {
+    try {
+      const users = appDatabase.getAllUsers();
+      return { success: true, users };
+    } catch (error) {
+      console.error("Error getting users:", error);
+      return { success: false, error: error.message };
+    }
+  });
+
+  ipcMain.handle("db:getUserById", async (event, id: number) => {
+    try {
+      const user = appDatabase.getUserById(id);
+      return { success: true, user };
+    } catch (error) {
+      console.error("Error getting user:", error);
+      return { success: false, error: error.message };
+    }
+  });
 
   createWindow();
 });
