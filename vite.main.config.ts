@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
 // https://vitejs.dev/config
 export default defineConfig({
@@ -7,12 +7,12 @@ export default defineConfig({
     rollupOptions: {
       external: [
         // Tell Vite that better-sqlite3 is external and should not be bundled
-        'better-sqlite3'
-      ]
-    }
+        "better-sqlite3",
+      ],
+    },
   },
   optimizeDeps: {
     // Exclude better-sqlite3 from dependency pre-bundling
-    exclude: ['better-sqlite3']
-  }
+    exclude: ["better-sqlite3"],
+  },
 });

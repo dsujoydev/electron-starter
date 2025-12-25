@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import { UserForm, UserList } from "./users";
-import "./users/styles.css";
+// import "./users/styles.css";
 
 // Wait for DOM to be ready before initializing React
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,12 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       return (
-        <div className="app">
+        <div className="max-w-7xl mx-auto mt-10">
           <header>
-            <h1>User Management System</h1>
+            <h1 className="text-2xl font-bold">User Management System</h1>
           </header>
 
-          <main>
+          <main className="grid gap-8">
             <UserForm onUserAdded={handleUserAdded} />
             <UserList refreshTrigger={refreshTrigger} />
           </main>

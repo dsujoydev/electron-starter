@@ -13,13 +13,13 @@ interface UserItemProps {
 
 export const UserItem: React.FC<UserItemProps> = ({ user }) => {
   return (
-    <div className="user-item">
-      <div className="user-info">
-        <h4>{user.username}</h4>
-        <p>{user.email}</p>
-        <small>Joined: {new Date(user.created_at).toLocaleDateString()}</small>
+    <div className="flex justify-between items-center p-4 border border-gray-200 rounded-lg">
+      <div className="">
+        <h4 className="text-lg">{user.username}</h4>
+        <p className="text-sm text-gray-500">{user.email}</p>
+        <small className="text-sm text-gray-500">Joined: {new Date(user.created_at).toLocaleDateString()}</small>
       </div>
-      <div className="user-id">ID: {user.id}</div>
+      <div className="text-sm text-gray-500">ID: {user.id}</div>
     </div>
   );
 };
